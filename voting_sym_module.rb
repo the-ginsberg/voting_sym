@@ -28,7 +28,7 @@ def main_menu
       when "l"
         list_arrays
       when "u"
-        ### Send player to entity update method ###
+        person_update_menu
       when "r"
         ### Run Simulation or fail if missing entities ###
       when "q"
@@ -114,6 +114,7 @@ def list_arrays
   user_response = gets.chomp.downcase
 
   case user_response
+### List Voters ###
   when "v"
   $voter_array.each { |x|
   print x.name + " "
@@ -121,6 +122,7 @@ def list_arrays
   puts
   }
 
+### List Candidates ###
   when "c"
   $candidate_array.each { |x|
   print x.name + " "
@@ -133,7 +135,6 @@ def list_arrays
   end
 
 end
-
 
 
   ### Politician Creation Method ###
@@ -171,6 +172,177 @@ end
       main_menu
   end
 
+
+### Person Updater ###
+  def person_update_menu
+    puts <<-END
+    You have selected to update a person.
+    Would you like to update a (c)andidate or a (v)oter?
+    END
+
+    user_choice = gets.chomp.downcase
+
+    case user_choice
+      when "c"
+      ### Go to Update Candidate ###
+      candidate_update
+
+      when "v"
+      ### Go to Update Voter ###
+      voter_update
+
+      else
+      puts "Invalid Response! Try again."
+      person_update_menu
+    end
+  end
+
+############# Update Candidate #############
+def candidate_update
+  puts <<-END
+  You have selected to update a Candidate.
+  Below is a list of Candidates, please select a candidate by name.
+  END
+  sleep 2
+
+  ### Provide a list of names to user ###
+  $candidate_array.each { |x|
+  print x.name + ", "
+  }
+
+  sleep 1
+
+  puts "Which candidate would you like to update?"
+  candidate_choice = gets.chomp
+
+  ### Compare User input against Candidate Array ###
+  $candidate_array.each { |x|
+    if x.name == candidate_choice
+      puts <<-END
+      #{x.name} of the #{x.party} Located!
+      What would you like to update the name to?
+      END
+      ### Get new name ###
+      new_name = gets.chomp
+
+      ### Get new party ###
+      puts <<-END
+      What party are they with?
+      a) Democrat
+      b) Republican
+      END
+      new_party = gets.chomp.downcase
+
+       ### Update the values ###
+        case new_party
+          when "a"
+            x.name = new_name
+            x.party = "Democrat"
+            puts "Update complete returning to main menu."
+            main_menu
+          when "b"
+            x.name = new_name
+            x.party = "Republican"
+            puts "Update complete returning to main menu."
+            main_menu
+          else
+            puts "Invalid Input."
+            candidate_update
+        end
+    else
+      puts "Checking..."
+      puts
+    end
+    }
+    puts "No user with that name located. Returning to Main Menu."
+    main_menu
+  end
+##########     ##########
+
+
+
+############# Update Voter #############
+  def voter_update
+    puts <<-END
+    You have selected to update a voter.
+    Below is a list of voters, please select a voter by name.
+    END
+    sleep 2
+
+    ### Provide a list of names to user ###
+    $voter_array.each { |x|
+    print x.name + ", "
+    }
+
+    sleep 1
+
+    puts "Which voter would you like to update?"
+    voter_choice = gets.chomp
+
+    ### Compare User input against Voter Array ###
+    $voter_array.each { |x|
+      if x.name == voter_choice
+
+        ### Get new name ###
+        puts <<-END
+        #{x.name}, supporter of the #{x.politics} Located!
+        What would you like to update the name to?
+        END
+        new_name = gets.chomp
+
+        ### Get new party ###
+        puts <<-END
+        What political group do they support?
+        a) Liberal
+        b) Conservative
+        c) Tea Party
+        d) Socialist
+        If you do not select one of the above options, your voters politics are Neutral.
+        END
+        new_party = gets.chomp.downcase
+
+         ### Update the values ###
+          case new_party
+            when "a"
+              x.name = new_name
+              x.politics = "Liberal"
+              puts "Update complete returning to main menu."
+              main_menu
+            when "b"
+              x.name = new_name
+              x.politics = "Conservative"
+              puts "Update complete returning to main menu."
+              main_menu
+            when "c"
+              x.name = new_name
+              x.politics = "Tea Party"
+              puts "Update complete returning to main menu."
+              main_menu
+            when "d"
+              x.name = new_name
+              x.politics = "Socialist"
+              puts "Update complete returning to main menu."
+              main_menu
+            else
+              puts "You did not select any of the above options, defaulting to Neutral."
+              x.name = new_name
+              x.politics = "Neutral"
+              sleep(0.2)
+              puts "Update complete returning to main menu."
+              main_menu
+          end
+      else
+        puts "Checking..."
+        puts
+      end
+      }
+      puts "No user with that name located. Returning to Main Menu."
+      main_menu
+    end
+##########     ##########
+
+
+### Quit Game Method ###
   def quit_game
     puts "Quitting Vote Sim."
     @again = false
