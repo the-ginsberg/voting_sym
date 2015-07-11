@@ -8,6 +8,8 @@ module VoteSymModClasses
       @name = name
       @politics = politics
     end
+
+
   end
 
 ### Politician Class ###
@@ -18,7 +20,9 @@ module VoteSymModClasses
       @name = name
       @party = party
     end
+
+
   end
 
-  
+
 end

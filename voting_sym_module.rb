@@ -1,11 +1,14 @@
 require "./voting_sym_classes"
 include VoteSymModClasses
 
+$voter_array = Array.new
+$candidate_array = Array.new
 
 module VoteSym
 
 ### Top Menu of Voting Sim ###
 def main_menu
+  puts
   puts <<-END
   Welcome to Voting Simulator, created by Jeff Ginsberg.
   What would you like to do?
@@ -21,15 +24,15 @@ def main_menu
   ### Decide where to send player next. ###
     case player_choice
       when "c"
-        ### Send player to Creation Method ###
+        people_creation_menu
       when "l"
-        ### List Created Entities to User ###
+        list_arrays
       when "u"
         ### Send player to entity update method ###
       when "r"
         ### Run Simulation or fail if missing entities ###
       when "q"
-        ### Quit Program ###
+        quit_game
       else
         ### Invalid Response ###
       end
@@ -49,11 +52,11 @@ def main_menu
     ### Decide where to send player next ###
         case player_choice
           when "v"
-          ### Create a Voter ###
+          create_new_voter
           when "p"
-          ### Create a Politician ###
+          create_new_candidate
           else
-          ### Invalid Response ###
+          people_creation_menu
         end
   end
 
@@ -91,12 +94,88 @@ def main_menu
           voter_name = Voter.new(voter_name, "Neutral")
       end
       puts "You have created #{voter_name}"
+      $voter_array << voter_name
       sleep(0.5)
 
       puts "Returning to Main Menu"
       ### Jump back to Main Menu ###
       main_menu
   end
+
+
+### List Information ###
+def list_arrays
+  puts <<-END
+  Would you like to view candidates or voters?
+  (C)andidates
+  (V)oters
+  END
+
+  user_response = gets.chomp.downcase
+
+  case user_response
+  when "v"
+  $voter_array.each { |x|
+  print x.name + " "
+  print x.politics
+  puts
+  }
+
+  when "c"
+  $candidate_array.each { |x|
+  print x.name + " "
+  print x.party
+  puts
+  }
+  else
+    puts "Invalid Response! Try again."
+    list_arrays
+  end
+
+end
+
+
+
+  ### Politician Creation Method ###
+  def create_new_candidate
+    puts <<-END
+    You have selected to create a new Politician!
+    What is the new candidates name?
+    END
+    candidate_name = gets.chomp
+
+    sleep(0.5)
+
+    puts <<-END
+    Please select a Party that your Politician is affiliated with:
+    a) Democrat
+    b) Republican
+    END
+
+    candidate_party_choice = gets.chomp.downcase
+      case candidate_party_choice
+        when "a"
+          candidate_name = Politician.new(candidate_name, "Democrat")
+        when "b"
+          candidate_name = Politician.new(candidate_name, "Republican")
+        else
+          puts "Invalid Party selection, please try again."
+          create_new_candidate
+      end
+      puts "You have created #{candidate_name}"
+      $candidate_array << candidate_name
+      sleep(0.5)
+
+      puts "Returning to Main Menu"
+      ### Jump back to Main Menu ###
+      main_menu
+  end
+
+  def quit_game
+    puts "Quitting Vote Sim."
+    @again = false
+  end
+
 
 
 end

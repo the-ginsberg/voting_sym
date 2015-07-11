@@ -1,4 +1,13 @@
 require "./voting_sym_module"
 include VoteSym
 
-create_new_voter
+@again = true
+while @again == true
+main_menu
+
+
+
+
+end
+
+puts "You quit!"
