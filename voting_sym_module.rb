@@ -363,33 +363,172 @@ end
 ### Function Convincing Voters ###
     def stump_speech
       $candidate_array.each { |x|
+
+        ### Democrat Speech Begin Here ###
         if x.party == "Democrat"
           $voter_array.each { |y|
             case y.politics
+
+            ### Democrat attempting to convince Liberal for vote ###
             when "Liberal"
-              puts "Liberal!"
+              lib_stats = [1,2,3,4].sample
+              if y.vote == true && [1,2,3,4].sample != lib_stats
+                puts "I #{y.name} am voting for #{x.name}!"
+                y.vote = false
+                x.votes += 1
+              elsif y.vote == true && [1,2,3,4].sample == lib_stats
+                puts "I #{y.name} am not voting for #{x.name}."
+              else
+                puts "I #{y.name} already voted."
+              end
+
+            ### Democrat attempting to convince Conservative for vote ###
             when "Conservative"
-              puts "Conservative!"
+              conserv_stats = [1,2,3,4].sample
+              if y.vote == true && [1,2,3,4].sample == conserv_stats
+                puts "I #{y.name} am voting for #{x.name}!"
+                y.vote = false
+                x.votes += 1
+              elsif y.vote == true && [1,2,3,4].sample != conserv_stats
+                puts "I #{y.name} am not voting for #{x.name}."
+              else
+                puts "I #{y.name} already voted."
+              end
+
+            ### Democrat attempting to convince Tea Party for vote ###
             when "Tea Party"
-              puts "Tea Party!"
+              tea_part_stats = [1,2,3,4,5,6,7,8,9,10].sample
+              if y.vote == true && [1,2,3,4,5,6,7,8,9,10].sample == tea_part_stats
+                puts "I #{y.name} amd voting for #{x.name}!"
+                y.vote = false
+                x.votes += 1
+              elsif y.vote == true && [1,2,3,4,5,6,7,8,9,10].sample != tea_part_stats
+                puts "I #{y.name} am not voting for #{x.name}."
+              else
+                puts "I #{y.name} already voted."
+              end
+
+            ### Democrat attempting to convince Socialist for vote ###
             when "Socialist"
-              puts "Socialist!"
+              socialist_stats = [1,2,3,4,5,6,7,8,9,10].sample
+              if y.vote == true && [1,2,3,4,5,6,7,8,9,10].sample != socialist_stats
+                puts "I #{y.name} am voting for #{x.name}!"
+                y.vote = false
+                x.votes += 1
+              elsif y.vote == true && [1,2,3,4,5,6,7,8,9,10].sample == socialist_stats
+                puts "I #{y.name} am not voting for #{x.name}."
+              else
+                puts "I #{y.name} already voted."
+              end
+
+            ### Democrat attempting to convince Neutral for vote ###
             when "Neutral"
-              puts "Neutral"
+              neutral_stats = [1,2].sample
+              if y.vote == true && [1,2].sample == neutral_stats
+                puts "I #{y.name} am voting for #{x.name}!"
+                y.vote = false
+                x.votes += 1
+              elsif y.vote == true && [1,2].sample != neutral_stats
+                puts "I #{y.name} am not voting for #{x.name}."
+              else
+                puts "I #{y.name} already voted."
+              end
+
+            ### Candidate passed through had no political alignment ###
+            ### This should NEVER Happen! ###
             else
-              puts "Did not work!"
+              puts "A CANDIDATE ENTERED DID NOT HAVE A POLITICAL ALIGNMENT!"
+              sleep 3
+
             end
           }
+          #^^##^^##^^# Democrat Computations Complete #^^##^^##^^#
 
-
-
+        ### Begin Republican Calculations! ###
+        ### Republican Speeches Begin Here! ###
         else
+          $voter_array.each { |z|
+            case z.politics
 
-        end
+              ### Republican attempting to convince Liberal for vote ###
+              when "Liberal"
+                lib2_stats = [1,2,3,4].sample
+                if z.vote == true && [1,2,3,4].sample == lib2_stats
+                  puts "I #{z.name} am voting for #{x.name}!"
+                  z.vote = false
+                  x.votes += 1
+                elsif z.vote == true && [1,2,3,4].sample != lib2_stats
+                  puts "I #{z.name} am not voting for #{x.name}."
+                else
+                  puts "I #{z.name} already voted."
+                end
 
-      }
+              ### Republican attempting to convince Conservative for vote ###
+              when "Conservative"
+                conserv2_stats = [1,2,3,4].sample
+                if z.vote == true && [1,2,3,4].sample != conserv2_stats
+                  puts "I #{z.name} am voting for #{x.name}!"
+                  z.vote = false
+                  x.votes += 1
+                elsif z.vote == true && [1,2,3,4].sample == conserv2_stats
+                  puts "I #{z.name} am not voting for #{x.name}."
+                else
+                  puts "I #{z.name} already voted."
+                end
 
-    end
+              ### Republican attempting to convince Tea Party for vote ###
+              when "Tea Party"
+                tea_part2_stats = [1,2,3,4,5,6,7,8,9,10].sample
+                if z.vote == true && [1,2,3,4,5,6,7,8,9,10].sample != tea_part2_stats
+                  puts "I #{z.name} amd voting for #{x.name}!"
+                  z.vote = false
+                  x.votes += 1
+                elsif z.vote == true && [1,2,3,4,5,6,7,8,9,10].sample == tea_part2_stats
+                  puts "I #{z.name} am not voting for #{x.name}."
+                else
+                  puts "I #{z.name} already voted."
+                end
+
+              ### Republican attempting to convince Socialist for vote ###
+              when "Socialist"
+                socialist2_stats = [1,2,3,4,5,6,7,8,9,10].sample
+                if z.vote == true && [1,2,3,4,5,6,7,8,9,10].sample == socialist2_stats
+                  puts "I #{z.name} am voting for #{x.name}!"
+                  z.vote = false
+                  x.votes += 1
+                elsif z.vote == true && [1,2,3,4,5,6,7,8,9,10].sample != socialist2_stats
+                  puts "I #{z.name} am not voting for #{x.name}."
+                else
+                  puts "I #{z.name} already voted."
+                end
+
+              ### Democrat attempting to convince Neutral for vote ###
+              when "Neutral"
+                neutral2_stats = [1,2].sample
+                if z.vote == true && [1,2].sample == neutral2_stats
+                  puts "I #{z.name} am voting for #{x.name}!"
+                  z.vote = false
+                  x.votes += 1
+                elsif z.vote == true && [1,2].sample != neutral2_stats
+                  puts "I #{z.name} am not voting for #{x.name}."
+                else
+                  puts "I #{z.name} already voted."
+                end
+
+              ### Candidate passed through had no political alignment ###
+              ### This should NEVER Happen! ###
+              else
+                puts "A CANDIDATE ENTERED DID NOT HAVE A POLITICAL ALIGNMENT!"
+                sleep 3
+
+              end ### Ending Republican Calculation Case ###
+          } ### Ending Republican .each on the array ###
+
+        end ### Ending Democrat/Republican If Else Statement ###
+
+      } ### Ending .each of the candidates ###
+
+    end ### Ending Stump Speech Method ###
 
 
 ##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##

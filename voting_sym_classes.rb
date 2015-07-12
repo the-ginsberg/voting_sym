@@ -2,7 +2,7 @@ module VoteSymModClasses
 
 ### Voter Class ###
   class Voter
-    attr_accessor :name, :politics
+    attr_accessor :name, :politics, :vote
 
     def initialize(name, politics)
       @name = name
@@ -14,7 +14,7 @@ module VoteSymModClasses
 
 ### Politician Class ###
   class Politician
-    attr_accessor :name, :party
+    attr_accessor :name, :party, :votes
 
     def initialize(name, party)
       @name = name
