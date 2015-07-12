@@ -355,7 +355,7 @@ def voter_simulation_method
     stump_speech
 
   end
-  puts "If didnt work!"
+
 end
 
 
@@ -399,7 +399,7 @@ end
             when "Tea Party"
               tea_part_stats = [1,2,3,4,5,6,7,8,9,10].sample
               if y.vote == true && [1,2,3,4,5,6,7,8,9,10].sample == tea_part_stats
-                puts "I #{y.name} amd voting for #{x.name}!"
+                puts "I #{y.name} am voting for #{x.name}!"
                 y.vote = false
                 x.votes += 1
               elsif y.vote == true && [1,2,3,4,5,6,7,8,9,10].sample != tea_part_stats
@@ -480,7 +480,7 @@ end
               when "Tea Party"
                 tea_part2_stats = [1,2,3,4,5,6,7,8,9,10].sample
                 if z.vote == true && [1,2,3,4,5,6,7,8,9,10].sample != tea_part2_stats
-                  puts "I #{z.name} amd voting for #{x.name}!"
+                  puts "I #{z.name} am voting for #{x.name}!"
                   z.vote = false
                   x.votes += 1
                 elsif z.vote == true && [1,2,3,4,5,6,7,8,9,10].sample == tea_part2_stats
@@ -527,11 +527,22 @@ end
         end ### Ending Democrat/Republican If Else Statement ###
 
       } ### Ending .each of the candidates ###
-
+      display_vote_results
     end ### Ending Stump Speech Method ###
 
 
 ##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##
+
+### Display the vote result ###
+def display_vote_results
+  $candidate_array.each { |x|
+  puts
+  puts "#{x.name} received #{x.votes} votes!"
+  }
+  puts
+  main_menu
+end
+
 
 
 ### Quit Game Method ###
