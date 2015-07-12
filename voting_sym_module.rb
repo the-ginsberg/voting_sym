@@ -30,7 +30,7 @@ def main_menu
       when "u"
         person_update_menu
       when "r"
-        ### Run Simulation or fail if missing entities ###
+        voter_simulation_method
       when "q"
         quit_game
       else
@@ -340,6 +340,59 @@ def candidate_update
       main_menu
     end
 ##########     ##########
+
+
+####################### VOTER SIMULATION #############################
+def voter_simulation_method
+  if $candidate_array.empty? == true || $voter_array.empty? == true
+    puts <<-END
+    You must have at least 1 voter and 1 candidate to run a vote.
+    Please create at least one of each and return to run a simulation.
+    END
+    main_menu
+  else
+    #### Run Simulation ### Stump speech function???
+    stump_speech
+
+  end
+  puts "If didnt work!"
+end
+
+
+
+### Function Convincing Voters ###
+    def stump_speech
+      $candidate_array.each { |x|
+        if x.party == "Democrat"
+          $voter_array.each { |y|
+            case y.politics
+            when "Liberal"
+              puts "Liberal!"
+            when "Conservative"
+              puts "Conservative!"
+            when "Tea Party"
+              puts "Tea Party!"
+            when "Socialist"
+              puts "Socialist!"
+            when "Neutral"
+              puts "Neutral"
+            else
+              puts "Did not work!"
+            end
+          }
+
+
+
+        else
+
+        end
+
+      }
+
+    end
+
+
+##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##^^##
 
 
 ### Quit Game Method ###

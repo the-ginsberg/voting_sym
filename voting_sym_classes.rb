@@ -7,8 +7,8 @@ module VoteSymModClasses
     def initialize(name, politics)
       @name = name
       @politics = politics
+      @vote = true
     end
-
 
   end
 
@@ -19,10 +19,8 @@ module VoteSymModClasses
     def initialize(name, party)
       @name = name
       @party = party
+      @votes = 1
     end
 
-
   end
-
-
 end
