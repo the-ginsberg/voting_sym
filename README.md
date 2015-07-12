@@ -2,7 +2,7 @@
 My Voting Simulator
 
 Build Notes:
-[url=http://imgur.com/8A7oSdF][img]http://i.imgur.com/8A7oSdF.jpg[/img][/url]
+<a href="http://imgur.com/8A7oSdF"><img src="http://i.imgur.com/8A7oSdF.jpg" title="source: imgur.com" /></a>
 
 This is my attempt at a voting simulator.
 
